@@ -1,17 +1,19 @@
-# taskline-api
+![Taskline API](docs/banner.svg)
 
-Rails API for **Taskline** — a kanban board app with minimal room chat and
-WebRTC voice (P2P via WebSocket signaling).
+# Taskline API
 
+[![CI](https://github.com/plucasr/taskline-api/actions/workflows/ci.yml/badge.svg)](https://github.com/plucasr/taskline-api/actions/workflows/ci.yml) [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+Rails API for **Taskline** — kanban boards with minimal room chat and WebRTC voice (P2P via WebSocket signaling).
+
+## Features (planned)
 - Kanban: boards, columns, cards, members, roles
-- Auth: JWT
-- Realtime: Action Cable presence + chat signaling channel
-- Frontend: [taskline-web](../taskline-web) (Next.js)
+- JWT auth
+- Action Cable presence + chat signaling channel
+- Frontend: [taskline-web](https://github.com/plucasr/taskline-web)
 
 ## Stack
-
 Ruby on Rails 7 · PostgreSQL · JWT · Action Cable
 
 ## Status
-
-Scaffolded — see [TODO.md](TODO.md) for the 60-day build plan.
+Actively built over 60 days — see [TODO.md](TODO.md) for the traceable plan.
