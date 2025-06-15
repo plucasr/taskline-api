@@ -14,7 +14,7 @@ Day 1 = 2026-11-06. Check off as you go; commit with the day reference.
 - [ ] D9  Request specs for auth + boards
 - [ ] D10 Request specs for columns + cards
 - [ ] D11 README: setup, architecture diagram, endpoints table
-- [ ] D12 Dockerfile + docker-compose (api + db)
+- [x] D12 docker-compose for Postgres (api Dockerfile pending Rails skeleton)
 - [ ] D13 Error handling format (consistent JSON errors)
 - [ ] D14 Phase 1 retro — ROADMAP.md update
 
