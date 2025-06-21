@@ -1,8 +1,10 @@
 name: CI
+
 on:
-  push:
-    branches: [main]
   pull_request:
+  push:
+    branches: [ main ]
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -12,12 +14,24 @@ jobs:
         env:
           POSTGRES_PASSWORD: postgres
         ports: ["5432:5432"]
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/taskline_test
+      RAILS_ENV: test
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - run: bundle exec rubocop
+      - run: bin/rails db:prepare
       - run: bin/rails test
-        env:
-          DATABASE_URL: postgres://postgres:postgres@localhost:5432/taskline_test
+
+  lint:
+    runs-on: ubuntu-latest
+    env:
+      RUBOCOP_CACHE_ROOT: tmp/rubocop
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - run: bin/rubocop -f github
