@@ -4,15 +4,15 @@ Day 1 = 2026-11-06. Check off as you go; commit with the day reference.
 
 ## Phase 1 — Foundations (day 1–14)
 - [x] D1  api-only Rails application skeleton, Postgres config (docker-compose)
-- [ ] D2  RuboCop + RSpec (or minitest) setup, CI green
-- [ ] D3  Models: User, Board, BoardMembership, Column, Card (migrations + validations)
-- [ ] D4  JWT auth: sign up / login endpoints
-- [ ] D5  Boards CRUD + membership roles (owner/member)
-- [ ] D6  Columns CRUD + ordering
-- [ ] D7  Cards CRUD, move between columns
-- [ ] D8  Seed data
-- [ ] D9  Request specs for auth + boards
-- [ ] D10 Request specs for columns + cards
+- [x] D2  RuboCop + Minitest (chose minitest to stay aligned with the generated Rails 8 CI) setup, CI green
+- [x] D3  Models: User, Board, BoardMembership, Column, Card (migrations + validations)
+- [x] D4  JWT auth: sign up / login endpoints
+- [x] D5  Boards CRUD + membership roles (owner/member)
+- [x] D6  Columns CRUD + ordering
+- [x] D7  Cards CRUD, move between columns
+- [x] D8  Seed data
+- [x] D9  Request specs for auth + boards
+- [x] D10 Request specs for columns + cards
 - [ ] D11 README: setup, architecture diagram, endpoints table
 - [x] D12 docker-compose for Postgres (api Dockerfile pending Rails skeleton)
 - [ ] D13 Error handling format (consistent JSON errors)
