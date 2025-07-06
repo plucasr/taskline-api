@@ -8,13 +8,13 @@ class Api::V1::ColumnsController < Api::V1::BaseController
 
   def create
     column = @board.columns.new(column_params)
-    return render json: { errors: column.errors.full_messages }, status: :unprocessable_entity unless column.save
+    return render_validation_errors(column) unless column.save
 
     render json: column, status: :created
   end
 
   def update
-    return render json: { errors: @column.errors.full_messages }, status: :unprocessable_entity unless @column.update(column_params)
+    return render_validation_errors(@column) unless @column.update(column_params)
 
     render json: @column
   end
@@ -28,14 +28,10 @@ class Api::V1::ColumnsController < Api::V1::BaseController
 
   def set_board
     @board = current_user.boards.find(params[:board_id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Board not found" }, status: :not_found
   end
 
   def set_column
     @column = @board.columns.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Column not found" }, status: :not_found
   end
 
   def column_params

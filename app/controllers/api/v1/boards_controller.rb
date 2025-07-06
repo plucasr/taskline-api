@@ -11,14 +11,14 @@ class Api::V1::BoardsController < Api::V1::BaseController
 
   def create
     board = Board.new(board_params)
-    return render json: { errors: board.errors.full_messages }, status: :unprocessable_entity unless board.save
+    return render_validation_errors(board) unless board.save
 
     current_user.board_memberships.create!(board: board, role: :owner)
     render json: board, status: :created
   end
 
   def update
-    return render json: { errors: @board.errors.full_messages }, status: :unprocessable_entity unless @board.update(board_params)
+    return render_validation_errors(@board) unless @board.update(board_params)
 
     render json: @board
   end
@@ -36,8 +36,6 @@ class Api::V1::BoardsController < Api::V1::BaseController
 
   def set_board
     @board = current_user.boards.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Board not found" }, status: :not_found
   end
 
   def board_params

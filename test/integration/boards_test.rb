@@ -67,3 +67,25 @@ class BoardsTest < ActionDispatch::IntegrationTest
     response.parsed_body["token"]
   end
 end
+
+class ErrorFormatTest < ActionDispatch::IntegrationTest
+  setup do
+    @user = User.create!(email: "errors@user.dev", password: "secret123", password_confirmation: "secret123")
+    post "/api/v1/login", params: { email: @user.email, password: "secret123" }
+    @headers = { "Authorization" => "Bearer #{response.parsed_body['token']}" }
+  end
+
+  test "missing record returns not found shape" do
+    get "/api/v1/boards/99999", headers: @headers
+
+    assert_response :not_found
+    assert_equal "Not found", response.parsed_body["error"]
+  end
+
+  test "validation failure returns errors array" do
+    post "/api/v1/boards", params: { name: "" }, headers: @headers
+
+    assert_response :unprocessable_entity
+    assert response.parsed_body["errors"].is_a?(Array)
+  end
+end
