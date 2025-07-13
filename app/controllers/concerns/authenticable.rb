@@ -1,7 +1,7 @@
 module Authenticable
   extend ActiveSupport::Concern
 
-  SECRET = Rails.application.credentials.secret_key_base
+  SECRET = ENV.fetch("JWT_SECRET") { Rails.application.credentials.secret_key_base }
 
   def encode_token(user)
     JWT.encode({ user_id: user.id, exp: 24.hours.from_now.to_i }, SECRET, "HS256")
