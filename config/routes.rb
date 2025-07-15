@@ -5,6 +5,9 @@ Rails.application.routes.draw do
       post "login", to: "auth#login"
 
       resources :boards, only: %i[index show create update destroy] do
+        resources :rooms, only: %i[index create] do
+          resources :messages, only: %i[index]
+        end
         resources :columns, only: %i[index create update destroy] do
           resources :cards, only: %i[index create update destroy] do
             patch :move, on: :member

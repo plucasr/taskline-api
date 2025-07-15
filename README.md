@@ -34,6 +34,18 @@ docker compose run --rm -e RAILS_ENV=test \
   api bin/rails test
 ```
 
+## Realtime channels (Action Cable)
+
+All channels authenticate via JWT: pass `?token=<jwt>` when opening the cable connection.
+
+| Channel | Stream | Purpose |
+|---|---|---|
+| `PresenceChannel` | `board_{id}_presence` | join/leave broadcasts for board members |
+| `RoomChannel` | `room_{id}` | board-scoped chat; `speak` persists and broadcasts messages |
+| `SignalingChannel` | `room_{id}_signaling` | relays `offer`/`answer`/ICE payloads between WebRTC peers |
+
+REST companions: `GET/POST /api/v1/boards/:board_id/rooms`, `GET /api/v1/boards/:board_id/rooms/:room_id/messages`.
+
 ## Error format
 
 | Status | Shape | When |

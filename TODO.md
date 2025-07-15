@@ -19,11 +19,11 @@ Day 1 = 2026-11-06. Check off as you go; commit with the day reference.
 - [ ] D14 Phase 1 retro — ROADMAP.md update
 
 ## Phase 2 — Depth (day 15–40)
-- [ ] D15 Action Cable: connection auth (JWT)
-- [ ] D16 Presence channel: who is online on a board
-- [ ] D17 Rooms model (board-scoped chat rooms)
-- [ ] D18 Messages model + broadcast to room channel
-- [ ] D19 Signaling channel: offer/answer/ICE relay over Action Cable
+- [x] D15 Action Cable: connection auth (JWT)
+- [x] D16 Presence channel: who is online on a board
+- [x] D17 Rooms model (board-scoped chat rooms)
+- [x] D18 Messages model + broadcast to room channel
+- [x] D19 Signaling channel: offer/answer/ICE relay over Action Cable
 - [ ] D20 Rate limiting on messages
 - [ ] D21 Model specs round
 - [ ] D22 Card assignees + due dates
