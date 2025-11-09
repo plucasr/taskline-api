@@ -3,7 +3,7 @@
 Day 1 = 2026-11-06. Check off as you go; commit with the day reference.
 
 ## Phase 1 — Foundations (day 1–14)
-- [ ] D1  `rails new` app skeleton (api-only), Postgres config
+- [x] D1  api-only Rails application skeleton, Postgres config (docker-compose)
 - [ ] D2  RuboCop + RSpec (or minitest) setup, CI green
 - [ ] D3  Models: User, Board, BoardMembership, Column, Card (migrations + validations)
 - [ ] D4  JWT auth: sign up / login endpoints
