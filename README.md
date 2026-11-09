@@ -16,13 +16,22 @@ WebRTC voice (P2P via WebSocket signaling).
 ## Stack
 Ruby on Rails 8 (API-only) · PostgreSQL · JWT
 
-## Development (Docker, no local Ruby needed)
+## Development (Docker only, no local Ruby needed)
 
 ```bash
-docker compose up -d db
-docker run --rm -v "$PWD:/app" -w /app --network taskline-api_default \
-  -e DATABASE_URL=postgres://postgres:postgres@db:5432/taskline_development \
-  ruby:3.3 bash -c "gem install bundler >/dev/null && bundle install && bin/rails db:prepare"
+docker compose up db        # start Postgres
+docker compose build api    # first run only: installs gems into the image
+docker compose up api       # server on http://localhost:3000
+```
+
+Everyday tasks:
+
+```bash
+docker compose run --rm api bin/rails console
+docker compose run --rm api bin/rails db:migrate
+docker compose run --rm -e RAILS_ENV=test \
+  -e DATABASE_URL=postgres://postgres:postgres@db:5432/taskline_test \
+  api bin/rails test
 ```
 
 ## Error format
@@ -34,12 +43,6 @@ docker run --rm -v "$PWD:/app" -w /app --network taskline-api_default \
 | 403 | `{ "error": "..." }` | authenticated but not allowed |
 | 404 | `{ "error": "Not found" }` | missing or unauthorized record |
 | 422 | `{ "errors": ["...", "..."] }` | validation failures |
-
-## Test
-
-```bash
-bin/rails test
-```
 
 ## Status
 Actively built over 60 days — see [TODO.md](TODO.md) for the traceable plan.
