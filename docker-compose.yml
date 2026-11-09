@@ -3,10 +3,23 @@ services:
     image: postgres:16
     environment:
       POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: taskline_development
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
+
+  api:
+    build: .
+    command: bin/rails server -b 0.0.0.0
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/taskline_development
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
 
 volumes:
   pgdata:

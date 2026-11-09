@@ -8,13 +8,13 @@ class Api::V1::CardsController < Api::V1::BaseController
 
   def create
     card = @column.cards.new(card_params)
-    return render json: { errors: card.errors.full_messages }, status: :unprocessable_entity unless card.save
+    return render_validation_errors(card) unless card.save
 
     render json: card, status: :created
   end
 
   def update
-    return render json: { errors: @card.errors.full_messages }, status: :unprocessable_entity unless @card.update(card_params)
+    return render_validation_errors(@card) unless @card.update(card_params)
 
     render json: @card
   end
@@ -37,14 +37,10 @@ class Api::V1::CardsController < Api::V1::BaseController
   def set_column
     board = current_user.boards.find(params[:board_id])
     @column = board.columns.find(params[:column_id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Not found" }, status: :not_found
   end
 
   def set_card
     @card = @column.cards.find(params[:id])
-  rescue ActiveRecord::RecordNotFound
-    render json: { error: "Card not found" }, status: :not_found
   end
 
   def card_params

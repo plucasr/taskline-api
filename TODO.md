@@ -15,7 +15,7 @@ Day 1 = 2026-11-06. Check off as you go; commit with the day reference.
 - [x] D10 Request specs for columns + cards
 - [ ] D11 README: setup, architecture diagram, endpoints table
 - [x] D12 docker-compose for Postgres (api Dockerfile pending Rails skeleton)
-- [ ] D13 Error handling format (consistent JSON errors)
+- [x] D13 Error handling format (consistent JSON errors)
 - [ ] D14 Phase 1 retro — ROADMAP.md update
 
 ## Phase 2 — Depth (day 15–40)

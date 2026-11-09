@@ -25,6 +25,16 @@ docker run --rm -v "$PWD:/app" -w /app --network taskline-api_default \
   ruby:3.3 bash -c "gem install bundler >/dev/null && bundle install && bin/rails db:prepare"
 ```
 
+## Error format
+
+| Status | Shape | When |
+|---|---|---|
+| 400 | `{ "error": "..." }` | malformed request |
+| 401 | `{ "error": "..." }` | missing/invalid token |
+| 403 | `{ "error": "..." }` | authenticated but not allowed |
+| 404 | `{ "error": "Not found" }` | missing or unauthorized record |
+| 422 | `{ "errors": ["...", "..."] }` | validation failures |
+
 ## Test
 
 ```bash
