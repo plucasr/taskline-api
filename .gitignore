@@ -6,3 +6,8 @@
 /storage/*
 /db/*.sqlite3
 .env
+
+# Ignore key files for decrypting credentials and more.
+/config/*.key
+
+/vendor/bundle/

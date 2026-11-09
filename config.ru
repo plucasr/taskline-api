@@ -1,3 +1,6 @@
-require_relative "app/application"
+# This file is used by Rack-based servers to start the application.
 
-run Taskline::Application
+require_relative "config/environment"
+
+run Rails.application
+Rails.application.load_server
